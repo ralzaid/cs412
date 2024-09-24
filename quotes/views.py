@@ -11,10 +11,10 @@ quotes = [
     ]
 
 images = [
-        "src/matthew1.jpg",
-        "src/matthew2.jpg",
-        "src/matthew3.jpg",
-        "src/matthew4.jpg"
+        "https://cs-people.bu.edu/ralzaid/hw3/static/src/matthew1.jpg",
+        "https://cs-people.bu.edu/ralzaid/hw3/static/src/matthew2.jpg",
+        "https://cs-people.bu.edu/ralzaid/hw3/static/src/matthew3.jpg",
+        "https://cs-people.bu.edu/ralzaid/hw3/static/src/matthew4.jpg"
     ]
 
 def home(request):

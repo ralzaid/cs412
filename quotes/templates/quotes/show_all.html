@@ -14,7 +14,7 @@
     <div class="images">
         {% for image in images %}
             <div class="imgs">
-                <img src="{% static image %}">
+                <img src="{{ image }}">
             </div>
         {% endfor %}
     </div>
