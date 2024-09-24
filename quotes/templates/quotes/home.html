@@ -1,0 +1,7 @@
+{% extends 'quotes/base.html' %}
+{% load static %}
+
+{% block content %}
+    <h3>{{ quote }}</h3>
+    <img src="{% static image %}" alt="Image of Matthew McConaughey" style="width:300px;height:auto;">
+{% endblock %}
