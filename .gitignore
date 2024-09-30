@@ -49,7 +49,8 @@ Thumbs.db
 desktop.ini
 
 # Pipenv and Poetry
-# Pipfile.lock      # I think we should check this in
+# Pipfile.lock      # I think we should check this ingit add .gitignore
+
 .python-version
 
 # Coverage reports

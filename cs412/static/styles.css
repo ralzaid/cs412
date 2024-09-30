@@ -29,15 +29,20 @@ nav ul {
 
 }
 
-h3{
-    margin: 5% 0;
+h1{
+    margin: 1% 0;
 }
 
 main{
-    height: 75vh;
+    height: 150vh;
 }
 nav ul li {
     display: inline;
+}
+
+.res{
+    display: flex;
+    flex-direction: row-reverse;
 }
 
 img{
@@ -56,9 +61,9 @@ nav a {
     /* justify-content: space-evenly; */
 }
 
-footer, h1, h2{
+footer, h2{
     text-align: center;
-    padding: 2%;
+    padding: 1%;
 }
 
 
@@ -71,4 +76,8 @@ footer, h1, h2{
 .images img{
     max-width: 90%;
     justify-content: space-between;
+}
+
+h3 {
+    margin: 1% 0;
 }

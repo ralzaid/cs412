@@ -1,0 +1,21 @@
+{% extends 'restaurant/base.html' %}
+{% load static %}
+
+{% block title %}Restaurant Info - Sufra{% endblock %}
+
+{% block content %}
+<h2>Welcome to {{ name }}</h2>
+<p><strong>Location:</strong> {{ location }}</p>
+
+<h2>Hours of Operation</h2>
+<ul>
+    {% for hour in hours %}
+        <li>{{ hour }}</li>
+    {% endfor %}
+</ul>
+
+<h2>Photos</h2>
+{% for photo in photos %}
+<img src="{% static 'src/sufra.jpg' %}" alt="Test Image" style="width:300px;">
+{% endfor %}
+{% endblock %}
