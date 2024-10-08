@@ -3,9 +3,11 @@
 
 {% block content %}
 <main class="container">
+
     {% for p in profiles %}
         <div class="profiles">
         <img src="{{p.image_url}}" alt="{{p.image_url}}">
+        <!---->
 
         
             <h2>{{p.first}} {{p.last}}</h2>
