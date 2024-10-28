@@ -16,4 +16,5 @@ class Profile(models.Model):
     def __str__(self):
         '''Return a string representation of this Article.'''
         return f"{self.first} {self.last}"
+     
     
