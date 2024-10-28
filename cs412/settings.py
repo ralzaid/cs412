@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-0l0n(!xax!!z%0kz8lcz28wc@-jk2%xal(1y0t&vgi_+%fd8on
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -38,9 +38,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'quotes', #<-- added quotes app here 
-    'restaurant', #<-- added restaurant app here 
-    'mini_fb' #<-- added mini_fb app here 
+    "quotes", #<-- added quotes app here 
+    "restaurant", #<-- added restaurant app here 
+    "mini_fb", #<-- added mini_fb app here 
 ]
 
 
