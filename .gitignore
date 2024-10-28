@@ -17,9 +17,9 @@ env/
 */migrations/__pycache__/
 */migrations/*.pyc
 
-# Database
-db.sqlite3
-db.sqlite3-journal
+# # Database
+# db.sqlite3
+# db.sqlite3-journal
 
 # Static and media files
 staticfiles/
