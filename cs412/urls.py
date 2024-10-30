@@ -26,3 +26,6 @@ urlpatterns = [
     path('restaurant/', include('restaurant.urls')),
     path('mini_fb/', include('mini_fb.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

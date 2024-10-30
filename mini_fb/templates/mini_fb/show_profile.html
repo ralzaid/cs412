@@ -3,6 +3,7 @@
 {% block content %}
 <main class="container">
     <h1>{{ profile.first }} {{ profile.last }}'s Profile</h1>
+    <a href="{% url 'update_profile' profile.pk %}">Update Profile</a>
     <div>
         <img src="{{ profile.image_url }}" alt="Profile Image" style="width:300px; height:auto;">
     </div>
@@ -20,11 +21,20 @@
     <a href="{% url 'create_status' profile.pk %}">Post a New Status</a>
     {% if profile.get_status_messages %}
             {% for status in profile.get_status_messages %}
-            <p> {{ status.message }} – <em>{{ status.timestamp|date:"Y-m-d H:i" }}</em></p>  
+            <p> {{ status.message }} – <em>{{ status.timestamp|date:"Y-m-d H:i" }}</em></p> 
+            {% if status.get_images %}
+                <div>
+                    {% for img in status.get_images %}
+                        <img src="{{ img.image_file.url }}">
+                    {% endfor %}
+                </div>
+            {% endif %}
             {% endfor %}
     {% else %}
         <p>No status messages available.</p>
     {% endif %}
+
+    
 
 </main>
 {% endblock %}

@@ -31,3 +31,15 @@ class StatusMessage(models.Model):
 
     def __str__(self):
         return f"Status by {self.profile.first} {self.profile.last} at {self.timestamp.strftime('%Y-%m-%d %H:%M:%S')}"
+
+    def get_images(self):
+        return self.image_set.all()
+
+
+class Image(models.Model):
+    image_file = models.ImageField(upload_to='images/')
+    status_message = models.ForeignKey(StatusMessage, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"Image for StatusMessage {self.status_message.id} at {self.timestamp}"

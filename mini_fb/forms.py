@@ -1,5 +1,5 @@
 from django import forms
-from .models import Profile, StatusMessage
+from .models import Profile, StatusMessage, Image
 
 class CreateProfileForm(forms.ModelForm):
     first = forms.CharField(label="First Name", required=True)
@@ -14,6 +14,12 @@ class CreateProfileForm(forms.ModelForm):
 
 
 class CreateStatusMessageForm(forms.ModelForm):
+    image_file = forms.ImageField(label="Upload Image", required=False)
     class Meta:
         model = StatusMessage
         fields = ['message']
+
+class UpdateProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['city', 'email', 'image_url']
