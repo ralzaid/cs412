@@ -17,6 +17,7 @@
         </tr>
     </table>
     <h2>Status Messages</h2>
+    <a href="{% url 'create_status' profile.pk %}">Post a New Status</a>
     {% if profile.get_status_messages %}
             {% for status in profile.get_status_messages %}
             <p> {{ status.message }} – <em>{{ status.timestamp|date:"Y-m-d H:i" }}</em></p>  

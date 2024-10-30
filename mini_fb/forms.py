@@ -1,5 +1,5 @@
 from django import forms
-from .models import Profile
+from .models import Profile, StatusMessage
 
 class CreateProfileForm(forms.ModelForm):
     first = forms.CharField(label="First Name", required=True)
@@ -11,3 +11,9 @@ class CreateProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['first', 'last', 'city', 'email', 'image_url']
+
+
+class CreateStatusMessageForm(forms.ModelForm):
+    class Meta:
+        model = StatusMessage
+        fields = ['message']

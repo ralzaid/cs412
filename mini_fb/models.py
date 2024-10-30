@@ -2,12 +2,11 @@
 # Define data models (objects) for use in the blog application
 from django.db import models
 from django.utils import timezone
+from django.urls import reverse
+
 
 # Create your models here.
 class Profile(models.Model):
-    '''Encapsulate the data for a blog Article by some author.'''
-
-    # data attributes:
     first = models.TextField(blank=False)
     last = models.TextField(blank=False)
     city = models.TextField(blank=False)
@@ -19,6 +18,9 @@ class Profile(models.Model):
 
     def get_status_messages(self):
         return self.statusmessage_set.order_by('-timestamp')
+    
+    def get_absolute_url(self):
+        return reverse('show_profile', kwargs={'pk': self.pk})
 
 
 class StatusMessage(models.Model):
