@@ -22,6 +22,8 @@
     {% if profile.get_status_messages %}
             {% for status in profile.get_status_messages %}
             <p> {{ status.message }} – <em>{{ status.timestamp|date:"Y-m-d H:i" }}</em></p> 
+            <a href="{% url 'update_status' status.pk %}">Update</a>
+            <a href="{% url 'delete_status' status.pk %}">Delete</a>
             {% if status.get_images %}
                 <div>
                     {% for img in status.get_images %}

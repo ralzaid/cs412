@@ -86,3 +86,64 @@ h3 {
     border-radius: 2%;
     padding: 3%;
 }
+
+
+
+/* Styling for delete confirmation page */
+.delete-container {
+    background-color: #ca004d;
+    color: #ffedf5;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.delete-container h2 {
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.status-message-box {
+    background-color: #ffedf5;
+    color: #ca004d;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.status-message-box p {
+    margin: 5px 0;
+}
+
+.delete-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn {
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.yes-button {
+    background-color: #ca004d;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.no-button {
+    background-color: #ffedf5;
+    color: #ca004d;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: bold;
+}
