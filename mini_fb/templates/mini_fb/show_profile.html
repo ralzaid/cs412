@@ -1,0 +1,29 @@
+{% extends 'mini_fb/base.html' %}
+
+{% block content %}
+<main class="container">
+    <h1>{{ profile.first }} {{ profile.last }}'s Profile</h1>
+    <div>
+        <img src="{{ profile.image_url }}" alt="Profile Image" style="width:300px; height:auto;">
+    </div>
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td>{{ profile.first }} {{ profile.last }}</td>
+        </tr>
+        <tr>
+            <td>City:</td>
+            <td>{{ profile.city }}</td>
+        </tr>
+    </table>
+    <h2>Status Messages</h2>
+    {% if profile.get_status_messages %}
+            {% for status in profile.get_status_messages %}
+            <p> {{ status.message }} – <em>{{ status.timestamp|date:"Y-m-d H:i" }}</em></p>  
+            {% endfor %}
+    {% else %}
+        <p>No status messages available.</p>
+    {% endif %}
+
+</main>
+{% endblock %}

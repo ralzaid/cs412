@@ -5,12 +5,11 @@
         <meta charset="UTF-8">
         <title>A5 | Mini FB</title>
         <link rel="stylesheet" href="{% static '/styles2.css' %}">
-
-        <!-- <link rel="stylesheet" href="https://cs-people.bu.edu/ralzaid/styles2.css"> -->
     </head>
     <body>
     <div class="page-wrapper">
     <h1>Mini FB</h1>
+    <a href="{% url 'show_all_profiles' %}" id="back-to">Back to All Profiles</a>
         <div class="container">
             <main>
                 {% block content %}
