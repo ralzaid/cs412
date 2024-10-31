@@ -3,7 +3,9 @@
 {% block content %}
 <main class="container">
     <h1>{{ profile.first }} {{ profile.last }}'s Profile</h1>
+    <a href="{% url 'show_all_profiles' %}" id="back-to">All Profiles</a>
     <a href="{% url 'update_profile' profile.pk %}">Update Profile</a>
+    <a href="{% url 'news_feed' profile.pk %}"> News Feed</a>
     <div>
         <img src="{{ profile.image_url }}" alt="Profile Image" style="width:300px; height:auto;">
     </div>
@@ -36,7 +38,23 @@
         <p>No status messages available.</p>
     {% endif %}
 
-    
-
+    <h2>Friends</h2>
+    {% if profile.get_friends %}
+        <ul>
+            {% for friend in profile.get_friends %}
+                <li style="display: flex; align-items: center; margin-bottom: 2%;">
+                    <a href="{% url 'show_profile' friend.pk %}">
+                        <img src="{{ friend.image_url }}" alt="{{ friend.first }} {{ friend.last }}" style="width: 30%; height: 30%;">
+                    </a>
+                </li>
+                <li style="list-style: none;">
+                     <a href="{% url 'show_profile' friend.pk %}">{{ friend.first }} {{ friend.last }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>This user has no friends.</p>
+    {% endif %}
+    <a href="{% url 'friend_suggestions' profile.pk %}">See Friend Suggestions</a>
 </main>
 {% endblock %}

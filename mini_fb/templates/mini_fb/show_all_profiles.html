@@ -1,20 +1,19 @@
 {% extends 'mini_fb/base.html' %}
 
-
 {% block content %}
-<main class="container">
+<h1>All Profiles</h1>
 
-    {% for p in profiles %}
-        <div class="profiles">
-        <img src="{{p.image_url}}" alt="{{p.image_url}}">
-        <!---->
-
-        
-            <h2>{{p.first}} {{p.last}}</h2>
-            <h3>city: {{p.city}}</h3>    
+<div class="profiles-list">
+    {% for profile in profiles %}
+        <div class="profile-item">
+            <a href="{% url 'show_profile' profile.pk %}">
+                <h2>{{ profile.first }} {{ profile.last }}</h2>
+                {% if profile.image_url %}
+                    <img src="{{ profile.image_url }}" alt="Profile Image" style="width:100px; height:auto;">
+                {% endif %}
+            </a>
+            <p>City: {{ profile.city }}</p>
         </div>
- 
     {% endfor %}
-</main> 
-
+</div>
 {% endblock %}
