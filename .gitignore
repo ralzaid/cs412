@@ -8,6 +8,7 @@ venv/
 env/
 .venv/
 .env/
+myenv/
 
 # Django environment variables
 .env
