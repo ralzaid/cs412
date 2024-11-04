@@ -9,6 +9,17 @@
     <body>
     <div class="page-wrapper">
     <h1>Mini FB</h1>
+    <header>
+        {% if user.is_authenticated %}
+            <p>Welcome, {{ user.username }}!</p>
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <input type="submit" value="Logout">
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </header>
     <a href="{% url 'create_profile' %}">Create New Profile</a>
         <div class="container">
             <main>

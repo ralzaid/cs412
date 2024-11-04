@@ -4,8 +4,8 @@
 <main class="container">
     <h1>{{ profile.first }} {{ profile.last }}'s Profile</h1>
     <a href="{% url 'show_all_profiles' %}" id="back-to">All Profiles</a>
-    <a href="{% url 'update_profile' profile.pk %}">Update Profile</a>
-    <a href="{% url 'news_feed' profile.pk %}"> News Feed</a>
+    <a href="{% url 'update_profile' %}">Update Profile</a>
+    <a href="{% url 'news_feed'  %}"> News Feed</a>
     <div>
         <img src="{{ profile.image_url }}" alt="Profile Image" style="width:300px; height:auto;">
     </div>
@@ -20,7 +20,7 @@
         </tr>
     </table>
     <h2>Status Messages</h2>
-    <a href="{% url 'create_status' profile.pk %}">Post a New Status</a>
+    <a href="{% url 'create_status' %}">Post a New Status</a>
     {% if profile.get_status_messages %}
             {% for status in profile.get_status_messages %}
             <p> {{ status.message }} – <em>{{ status.timestamp|date:"Y-m-d H:i" }}</em></p> 
@@ -55,6 +55,6 @@
     {% else %}
         <p>This user has no friends.</p>
     {% endif %}
-    <a href="{% url 'friend_suggestions' profile.pk %}">See Friend Suggestions</a>
+    <a href="{% url 'friend_suggestions' %}">See Friend Suggestions</a>
 </main>
 {% endblock %}
