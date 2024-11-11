@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     "quotes", #<-- added quotes app here 
     "restaurant", #<-- added restaurant app here 
     "mini_fb", #<-- added mini_fb app here 
+    "voter_analytics",
+
 ]
 
 
