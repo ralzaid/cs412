@@ -1,0 +1,13 @@
+{% extends 'project/base.html' %}
+
+{% block title %}Teams{% endblock %}
+
+{% block content %}
+<h2>Teams</h2>
+<ul>
+    {% for team in teams %}
+        <li>{{ team.player_one.username }} & {{ team.player_two.username }}</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'match-bracket' %}">View Match Bracket</a>
+{% endblock %}

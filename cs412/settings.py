@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     "quotes", #<-- added quotes app here 
     "restaurant", #<-- added restaurant app here 
     "mini_fb", #<-- added mini_fb app here 
-    "voter_analytics",
+    "project",
 
 ]
 
@@ -139,3 +139,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 ######## cs412/settings.py ########
 ALLOWED_HOSTS = ['*']
+

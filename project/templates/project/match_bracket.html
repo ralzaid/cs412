@@ -1,0 +1,22 @@
+{% extends 'project/base.html' %}
+
+{% block title %}Tournament Bracket{% endblock %}
+
+{% block content %}
+<h2>Tournament Bracket</h2>
+<ul>
+    {% for match in matches %}
+        <li>
+            <strong>Round {{ match.round }}</strong>: 
+            {{ match.team_one }} vs {{ match.team_two }} 
+            <br>
+            Score: {{ match.team_one_score }} - {{ match.team_two_score }}
+            <br>
+            Winner: {{ match.winner }}
+            <br>
+            <a href="{% url 'match-detail' match.id %}">View Match Details</a>
+        </li>
+        <hr>
+    {% endfor %}
+</ul>
+{% endblock %}
