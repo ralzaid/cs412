@@ -1,10 +1,12 @@
 {% extends 'project/base.html' %}
 
 {% block content %}
+<div id="sign-up-main">
 <h2>Create a New Team</h2>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Save Team</button>
 </form>
+</div>
 {% endblock %}

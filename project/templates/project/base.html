@@ -1,20 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <title>{% block title %}Baloot Tournament | Home {% endblock %}</title>
-
+    <link rel="stylesheet" href="{% static 'projstyle.css' %}">
 </head>
 <body>
     <header>
-        <h1>My Tournament App</h1>
-        <nav>
-            <a href="{% url 'team-list' %}">Teams</a>
-            <a href="{% url 'match-bracket' %}">Bracket</a>
-            <a href="{% url 'create-team' %}">Create Team</a>
-        </nav>
+        <nav class="navbar">
+            <h1><a href="{% url 'home' %}">My Tournament App</a></h1>
+            <h3>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'signout' %}">Log Out</a>
+                {% else %}
+                    <a href="{% url 'signin' %}">Sign In</a> | <a href="{% url 'signup' %}">Sign Up</a>
+                {% endif %}
+            </h3>
+            <div class="hamburger" onclick="toggleMenu()">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{% url 'team-list' %}">Teams</a></li>
+                <li><a href="{% url 'match-bracket' %}">Bracket</a></li>
+                <li><a href="{% url 'create-team' %}">Create Team</a></li>               
+            </ul>
+          </nav>
     </header>
-
+    
     <main>
         {% block content %}
         {% endblock %}
@@ -24,5 +39,6 @@
         <hr>
         <p>&copy; 2024 Rafal Alzaid</p>
     </footer>
+    <script src="{% static 'script.js' %}"></script>
 </body>
 </html>

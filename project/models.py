@@ -1,16 +1,22 @@
 from django.db import models
 from django.contrib.auth.models import User
 import random
+from django.core.exceptions import ValidationError
 
-# model to track teams and their scores and match mates if needed
 class Team(models.Model):
     player_one = models.ForeignKey(User, on_delete=models.CASCADE, related_name='player_one_teams')
     player_two = models.ForeignKey(User, on_delete=models.CASCADE, related_name='player_two_teams', null=True, blank=True)
-
     score = models.IntegerField(default=0)
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['player_one', 'player_two'],
+                name='unique_team'
+            )
+        ]
+
     def save(self, *args, **kwargs):
-        # assign a random teammate if player_two is not provided
         if not self.player_two:
             available_users = User.objects.exclude(
                 id__in=Team.objects.values_list('player_one', flat=True)
@@ -18,16 +24,22 @@ class Team(models.Model):
                 id__in=Team.objects.values_list('player_two', flat=True)
             ).exclude(
                 id=self.player_one.id
-            )
+            ).distinct()
+
             if available_users.exists():
-                self.player_two = random.choice(available_users)
+                self.player_two = random.choice(list(available_users))
         super().save(*args, **kwargs)
 
     def __str__(self):
         return f"Team: {self.player_one.username} & {self.player_two.username if self.player_two else 'Solo'}"
 
 
-# model to track individual matches
+STATUS_CHOICES = [
+    ('scheduled', 'Scheduled'),
+    ('ongoing', 'Ongoing'),
+    ('completed', 'Completed'),
+]
+
 class Match(models.Model):
     round = models.IntegerField()
     team_one = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='matches_as_team_one')
@@ -35,9 +47,14 @@ class Match(models.Model):
     team_one_score = models.IntegerField(default=0)
     team_two_score = models.IntegerField(default=0)
     winner = models.ForeignKey(Team, on_delete=models.SET_NULL, null=True, blank=True, related_name='matches_won')
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='scheduled')
+
+    def clean(self):
+        if self.team_one_score < 0 or self.team_two_score < 0:
+            raise ValidationError("Scores cannot be negative.")
 
     def save(self, *args, **kwargs):
-        # determine the winner based on scores
+        self.full_clean()  # Validate before saving
         if self.team_one_score > self.team_two_score:
             self.winner = self.team_one
         elif self.team_two_score > self.team_one_score:
@@ -48,3 +65,7 @@ class Match(models.Model):
 
     def __str__(self):
         return f"Round {self.round}: {self.team_one} vs {self.team_two}"
+
+    @classmethod
+    def get_round_winners(cls, round_number):
+        return cls.objects.filter(round=round_number, winner__isnull=False).values_list('winner', flat=True)
