@@ -9,4 +9,6 @@ class TeamForm(forms.ModelForm):
 class MatchForm(forms.ModelForm):
     class Meta:
         model = Match
-        fields = ['round', 'team_one', 'team_two', 'team_one_score', 'team_two_score']
+        fields = ['round', 'team_one', 'team_two', 'team_one_score', 'team_two_score', 'status']
+
+

@@ -1,13 +1,33 @@
 {% extends 'project/base.html' %}
+{% load custom_filters %}
 
 {% block title %}Match Details{% endblock %}
 
 {% block content %}
-<h2>Match Details</h2>
-<p><strong>Round:</strong> {{ match.round }}</p>
+<p class="match-detail-main1"><strong>Round:</strong> {{ match.round }}</p>
 <p><strong>Team 1:</strong> {{ match.team_one }}</p>
-<p><strong>Team 2:</strong> {{ match.team_two }}</p>
-<p><strong>Score:</strong> {{ match.team_one_score }} - {{ match.team_two_score }}</p>
-<p><strong>Winner:</strong> {{ match.winner }}</p>
-<a href="{% url 'match-bracket' %}">Back to Bracket</a>
+
+{% if match.team_two %}
+    <p><strong>Team 2:</strong> {{ match.team_two }}</p>
+{% else %}
+    <p><strong>Team 2:</strong> TBD</p>
+{% endif %}
+
+<p><strong>Status:</strong> {{ match.status }}</p>
+
+{% if match.winner %}
+    <p><strong>Winner:</strong> {{ match.winner }}</p>
+{% else %}
+    <p><strong>Winner:</strong> TBD</p>
+{% endif %}
+
+{% if user_involved %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update Match</button>
+    </form>
+{% else %}
+    <p>You are not authorized to update this match.</p>
+{% endif %}
 {% endblock %}

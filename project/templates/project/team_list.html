@@ -1,13 +1,47 @@
 {% extends 'project/base.html' %}
+{% load custom_filters %}
 
-{% block title %}Teams{% endblock %}
+{% block title %}Brackets{% endblock %}
 
 {% block content %}
-<h2>Teams</h2>
-<ul>
-    {% for team in teams %}
-        <li>{{ team.player_one.username }} & {{ team.player_two.username }}</li>
-    {% endfor %}
-</ul>
-<a href="{% url 'match-bracket' %}">View Match Bracket</a>
+<h2>Bracket</h2>
+
+{% if error %}
+    <p>{{ error }}</p>
+{% else %}
+    <div class="bracket-container">
+        {% for round in rounds %}
+            <div class="round">
+                <h3>Round {{ round }}</h3>
+                {% if matches_by_round|dict_key:round %}
+                    {% for match in matches_by_round|dict_key:round %}
+                        {% if match %}
+                            <div class="match">
+                                <a href="{% url 'match-detail' pk=match.id %}">
+                                    <!-- Team 1 -->
+                                    <span class="{% if match.winner == match.team_one %}winner{% elif match.team_two and match.winner == match.team_two %}loser{% endif %}">
+                                        {{ match.team_one }}
+                                    </span>
+                                    <span>vs</span>
+                                    <!-- Team 2 -->
+                                    {% if match.team_two %}
+                                        <span class="{% if match.winner == match.team_two %}winner{% elif match.winner == match.team_one %}loser{% endif %}">
+                                            {{ match.team_two }}
+                                        </span>
+                                    {% else %}
+                                        <span>TBD</span>
+                                    {% endif %}
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <p>No matches available for this round.</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
 {% endblock %}
+
+
